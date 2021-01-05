@@ -20,9 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-// Get constants & helpers.
-require_once SMP_PATH . 'includes/config.php';
-
 /**
  * Get plugins path
  *

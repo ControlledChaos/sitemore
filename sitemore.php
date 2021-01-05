@@ -76,32 +76,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Constant: Plugin version
- *
- * Keeping the version at 1.0.0 as this is a starter plugin but
- * you may want to start counting as you develop for your use case.
- *
- * Remember to find and replace the `@version x.x.x` in docblocks.
- *
- * @since 1.0.0
- * @var   string The latest plugin version.
- */
-define( 'SMP_VERSION', '1.0.0' );
-
-/**
- * Constant: Required PHP version
- *
- * Used instead of the minimum PHP version
- * in the plugin header.
- *
- * @see activate/classes/class-activate.php
- *
- * @since 1.0.0
- * @var   string The minimum required PHP version.
- */
-define( 'SMP_PHP_VERSION', '7.4' );
-
-/**
  * Constant: Plugin base name
  *
  * @since 1.0.0
@@ -109,65 +83,8 @@ define( 'SMP_PHP_VERSION', '7.4' );
  */
 define( 'SMP_BASENAME', plugin_basename( __FILE__ ) );
 
-/**
- * Constant: Text domain
- *
- * Remember to freplace in the plugin header above.
- *
- * @since 1.0.0
- * @var   string The text domain of the plugin.
- */
-define( 'SMP_DOMAIN', 'sitemore' );
-
-/**
- * Constant: Plugin folder path
- *
- * @since 1.0.0
- * @var   string The filesystem directory path (with trailing slash)
- *               for the plugin __FILE__ passed in.
- */
-if ( ! defined( 'SMP_PATH' ) ) {
-	define( 'SMP_PATH', plugin_dir_path( __FILE__ ) );
-}
-
-/**
- * Constant: Plugin folder URL
- *
- * @since 1.0.0
- * @var   string The URL directory path (with trailing slash)
- *               for the plugin __FILE__ passed in.
- */
-if ( ! defined( 'SMP_URL' ) ) {
-	define( 'SMP_URL', plugin_dir_url( __FILE__ ) );
-}
-
-/**
- * Constant: Universal slug
- *
- * This URL slug is used for various plugin admin & settings pages.
- *
- * The prefix will change in your search & replace in renaming the plugin.
- * Change the second part of the define(), here as 'site-more',
- * to your preferred page slug.
- *
- * @since 1.0.0
- * @var   string The URL slug of the admin pages.
- */
-if ( ! defined( 'SMP_ADMIN_SLUG' ) ) {
-	define( 'SMP_ADMIN_SLUG', 'site-more' );
-}
-
-/**
- * Parent plugin
- *
- * Define the parent plugin path: directory and core file name.
- *
- * @since  1.0.0
- * @return string Returns the plugin path of the parent.
- */
-if ( ! defined( 'SMP_PARENT' ) ) {
-	define( 'SMP_PARENT', 'sitecore/sitecore.php' );
-}
+// Get plugin configuration file.
+require plugin_dir_path( __FILE__ ) . 'config.php';
 
 /**
  * Activation & deactivation
