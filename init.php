@@ -39,7 +39,7 @@ function sitemore() {
 	require_once SMP_PATH . 'includes/autoloader.php';
 
 	// Get constants & helpers.
-	require SMP_PATH . 'includes/config.php';
+	require_once SMP_PATH . 'includes/config.php';
 
 	// Get compatibility functions.
 	require SMP_PATH . 'includes/compatibility.php';

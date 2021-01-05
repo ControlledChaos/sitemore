@@ -42,7 +42,50 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 	}
 }
 
+/**
+ * Parent plugin directory
+ *
+ * Returns the directory of the parent plugin.
+ *
+ * @since  1.0.0
+ * @access public
+ * @return boolean Returns the directory of the parent plugin.
+ */
+function parent_dir() {
+
+	// Get the plugins directory.
+	$plugins = plugin_dir_path( dirname( __DIR__ ) );
+
+	// Return true if the parent plugin is found.
+	if ( defined( 'SMP_PARENT' ) && file_exists( $plugins . SMP_PARENT ) ) {
+		return true;
+	}
+
+	// Otherwise return false.
+	return false;
+}
+
 // Stop here if the plugin functions file can not be accessed.
 if ( ! function_exists( 'is_plugin_active' ) ) {
 	return;
+}
+
+/**
+ * Parent plugin ready
+ *
+ * Returns true if the parent plugin is active.
+ *
+ * @since  1.0.0
+ * @access public
+ * @return boolean Returns true if the parent plugin is active.
+ */
+function parent_ready() {
+
+	// Return true if the parent plugin is active.
+	if ( defined( 'SMP_PARENT' ) && is_plugin_active( SMP_PARENT ) ) {
+		return true;
+	}
+
+	// Otherwise return false.
+	return false;
 }

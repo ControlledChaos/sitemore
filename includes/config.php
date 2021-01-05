@@ -40,10 +40,20 @@ if ( ! defined( 'SMP_NAME' ) ) {
  * Parent plugin name
  *
  * @since 1.0.0
- * @var   string The name of the plugin.
+ * @var   string The name of the parent plugin.
  */
 if ( ! defined( 'SMP_PARENT_NAME' ) ) {
 	define( 'SMP_PARENT_NAME', esc_html__( 'Site Core', SMP_DOMAIN ) );
+}
+
+/**
+ * Parent plugin directory
+ *
+ * @since 1.0.0
+ * @var   string The directory of the parent plugin.
+ */
+if ( ! defined( 'SMP_PARENT_DIR' ) ) {
+	define( 'SMP_PARENT_DIR', esc_html__( 'sitecore', SMP_DOMAIN ) );
 }
 
 /**
