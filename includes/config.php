@@ -37,6 +37,16 @@ if ( ! defined( 'SMP_NAME' ) ) {
 }
 
 /**
+ * Parent plugin name
+ *
+ * @since 1.0.0
+ * @var   string The name of the plugin.
+ */
+if ( ! defined( 'SMP_PARENT_NAME' ) ) {
+	define( 'SMP_PARENT_NAME', esc_html__( 'Site Core', SMP_DOMAIN ) );
+}
+
+/**
  * Developer name
  *
  * @since 1.0.0
@@ -74,4 +84,14 @@ if ( ! defined( 'SMP_DEV_EMAIL' ) ) {
  */
 if ( ! defined( 'SMP_PLUGIN_URL' ) ) {
 	define( 'SMP_PLUGIN_URL', 'https://github.com/ControlledChaos/sitemore' );
+}
+
+/**
+ * Plugin URL
+ *
+ * @since 1.0.0
+ * @var   string The URL of the plugin.
+ */
+if ( ! defined( 'SMP_PARENT_PLUGIN_URL' ) ) {
+	define( 'SMP_PARENT_PLUGIN_URL', 'https://github.com/ControlledChaos/sitemore' );
 }

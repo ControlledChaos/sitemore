@@ -23,6 +23,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Get constants & helpers.
 require SMP_PATH . 'includes/config.php';
 
+/**
+ * Get plugins path
+ *
+ * Used to check for active plugins with the `is_plugin_active` function.
+ */
+if ( ! function_exists( 'is_plugin_active' ) ) {
+
+	// Compatibility with ClassicPress and WordPress.
+	if ( file_exists( ABSPATH . 'wp-admin/includes/plugin.php' ) ) {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+	// Compatibility with the antibrand system.
+	} elseif ( defined( 'APP_INC_PATH' ) && file_exists( APP_INC_PATH . '/backend/plugin.php' ) ) {
+		include_once( APP_INC_PATH . '/backend/plugin.php' );
+	}
+}
+
 class Activate {
 
 	/**
@@ -42,6 +59,16 @@ class Activate {
 
 			// Add notice to admin header, uncomment to implement.
 			// add_action( 'admin_notices', [ $this, 'php_deactivate_notice_header' ] );
+		}
+
+		if (
+			defined( 'SMP_PARENT' ) &&
+			function_exists( 'is_plugin_active' ) &&
+			! is_plugin_active( SMP_PARENT )
+		) {
+
+			// Add notice to plugin row.
+			add_action( 'admin_notices', [ $this, 'parent_deactivate_notice_header' ], 5, 3 );
 		}
 	}
 
@@ -118,6 +145,30 @@ class Activate {
 				SMP_PHP_VERSION,
 				__( 'or greater. Your system is running PHP version', SMP_DOMAIN ),
 				phpversion()
+			); ?>
+		</div>
+	<?php
+
+	}
+
+	/**
+	 * PHP deactivation notice: admin header
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return string Returns the markup of the admin notice.
+	 */
+	public function parent_deactivate_notice_header() {
+
+	?>
+		<div id="plugin-php-notice" class="notice notice-error is-dismissible">
+			<?php echo sprintf(
+				'<p>%1s %2s <a href="%3s" target="_blank">%4s</a> %5s</p>',
+				esc_html( SMP_NAME ),
+				esc_html__( 'needs the', SMP_DOMAIN ),
+				esc_url( SMP_PARENT_PLUGIN_URL ),
+				esc_html( SMP_PARENT_NAME ),
+				esc_html__( 'to be installed and activated.', SMP_DOMAIN )
 			); ?>
 		</div>
 	<?php

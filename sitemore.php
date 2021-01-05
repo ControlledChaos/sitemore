@@ -147,14 +147,26 @@ if ( ! defined( 'SMP_URL' ) ) {
  * This URL slug is used for various plugin admin & settings pages.
  *
  * The prefix will change in your search & replace in renaming the plugin.
- * Change the second part of the define(), here as 'site-core',
+ * Change the second part of the define(), here as 'site-more',
  * to your preferred page slug.
  *
  * @since 1.0.0
  * @var   string The URL slug of the admin pages.
  */
 if ( ! defined( 'SMP_ADMIN_SLUG' ) ) {
-	define( 'SMP_ADMIN_SLUG', 'site-core' );
+	define( 'SMP_ADMIN_SLUG', 'site-more' );
+}
+
+/**
+ * Parent plugin
+ *
+ * Define the parent plugin path: directory and core file name.
+ *
+ * @since  1.0.0
+ * @return string Returns the plugin path of the parent.
+ */
+if ( ! defined( 'SMP_PARENT' ) ) {
+	define( 'SMP_PARENT', 'sitecore/sitecore.php' );
 }
 
 /**
@@ -220,7 +232,6 @@ deactivate_plugin();
  * Prevents breaking sites running older PHP versions.
  *
  * @since  1.0.0
- * @access public
  * @return void
  */
 if ( version_compare( phpversion(), SMP_PHP_VERSION, '<' ) ) {
