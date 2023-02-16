@@ -49,7 +49,7 @@ class Activate {
 	public function __construct() {
 
 		// Add notice(s) if the PHP version is insufficient.
-		if ( version_compare( phpversion(), SMP_PHP_VERSION, '<' ) ) {
+		if ( version_compare( phpversion(), SMP_CONFIG[ 'php_version' ], '<' ) ) {
 
 			// Add notice to plugin row.
 			add_action( 'after_plugin_row_' . SMP_BASENAME, [ $this, 'php_deactivate_notice_row' ], 5, 3 );
@@ -59,9 +59,9 @@ class Activate {
 		}
 
 		if (
-			defined( 'SMP_PARENT' ) &&
+			defined( 'SMP_CONFIG' ) &&
 			function_exists( 'is_plugin_active' ) &&
-			! is_plugin_active( SMP_PARENT )
+			! is_plugin_active( SMP_CONFIG[ 'parent' ] )
 		) {
 
 			// Add notice to plugin row.
@@ -94,27 +94,27 @@ class Activate {
 
 			<?php if ( isset( $plugin_data['update'] ) && ! empty( $plugin_data['update'] ) ) : ?>
 
-				.plugins tr.<?php echo SMP_DOMAIN; ?>-plugin-tr td {
+				.plugins tr.<?php echo SMP_CONFIG[ 'domain' ]; ?>-plugin-tr td {
 					box-shadow: none ! important;
 				}
 
-				.plugins tr.<?php echo SMP_DOMAIN; ?>-plugin-tr .update-message {
+				.plugins tr.<?php echo SMP_CONFIG[ 'domain' ]; ?>-plugin-tr .update-message {
 					margin-bottom: 0;
 				}
 
 			<?php endif; ?>
 		</style>
 
-		<tr id="plugin-php-notice" class="plugin-update-tr active <?php echo SMP_DOMAIN; ?>-plugin-tr">
+		<tr id="plugin-php-notice" class="plugin-update-tr active <?php echo SMP_CONFIG[ 'domain' ]; ?>-plugin-tr">
 			<td colspan="<?php echo $colspan; ?>" class="plugin-update colspanchange">
 				<div class="update-message notice inline notice-error notice-alt">
 					<?php echo sprintf(
 						'<p>%s %s %s %s %s %s</p>',
-						__( 'Functionality of the', SMP_DOMAIN ),
-						esc_html( SMP_NAME ),
-						__( 'plugin has been disabled because it requires PHP version', SMP_DOMAIN ),
-						SMP_PHP_VERSION,
-						__( 'or greater. Your system is running PHP version', SMP_DOMAIN ),
+						__( 'Functionality of the', SMP_CONFIG[ 'domain' ] ),
+						esc_html( SMP_CONFIG[ 'name' ] ),
+						__( 'plugin has been disabled because it requires PHP version', SMP_CONFIG[ 'domain' ] ),
+						SMP_CONFIG[ 'php_version' ],
+						__( 'or greater. Your system is running PHP version', SMP_CONFIG[ 'domain' ] ),
 						phpversion()
 					); ?>
 				</div>
@@ -136,11 +136,11 @@ class Activate {
 		<div id="plugin-php-notice" class="notice notice-error is-dismissible">
 			<?php echo sprintf(
 				'<p>%s %s %s %s %s %s</p>',
-				__( 'Functionality of the', SMP_DOMAIN ),
-				esc_html( SMP_NAME ),
-				__( 'plugin has been disabled because it requires PHP version', SMP_DOMAIN ),
-				SMP_PHP_VERSION,
-				__( 'or greater. Your system is running PHP version', SMP_DOMAIN ),
+				__( 'Functionality of the', SMP_CONFIG[ 'domain' ] ),
+				esc_html( SMP_CONFIG[ 'name' ] ),
+				__( 'plugin has been disabled because it requires PHP version', SMP_CONFIG[ 'domain' ] ),
+				SMP_CONFIG[ 'php_version' ],
+				__( 'or greater. Your system is running PHP version', SMP_CONFIG[ 'domain' ] ),
 				phpversion()
 			); ?>
 		</div>
@@ -161,11 +161,11 @@ class Activate {
 		<div id="plugin-php-notice" class="notice notice-error is-dismissible">
 			<?php echo sprintf(
 				'<p>%1s %2s <a href="%3s" target="_blank">%4s</a> %5s</p>',
-				esc_html( SMP_NAME ),
-				esc_html__( 'needs the', SMP_DOMAIN ),
-				esc_url( SMP_PARENT_PLUGIN_URL ),
-				esc_html( SMP_PARENT_NAME ),
-				esc_html__( 'to be installed and activated.', SMP_DOMAIN )
+				esc_html( SMP_CONFIG[ 'name' ] ),
+				esc_html__( 'needs the', SMP_CONFIG[ 'domain' ] ),
+				esc_url( SMP_CONFIG[ 'parent_plugin_url' ] ),
+				esc_html( SMP_CONFIG[ 'parent_name' ] ),
+				esc_html__( 'plugin to be installed and activated.', SMP_CONFIG[ 'domain' ] )
 			); ?>
 		</div>
 	<?php
