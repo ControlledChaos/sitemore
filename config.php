@@ -156,7 +156,7 @@ if ( ! defined( 'SMP_CONFIG' ) ) {
 		 * @since 1.0.0
 		 * @var   string The URL of the plugin.
 		 */
-		'plugin_url' => esc_url( 'https://github.com/ControlledChaos/sitecore' ),
+		'plugin_url' => esc_url( 'https://github.com/ControlledChaos/sitemore' ),
 
 		/**
 		 * Universal slug
@@ -196,7 +196,15 @@ if ( ! defined( 'SMP_CONFIG' ) ) {
 		 * @since 1.0.0
 		 * @var   string The directory of the parent plugin.
 		 */
-		'parent_dir' => 'sitecore'
+		'parent_dir' => 'sitecore',
+
+		/**
+		 * Parent plugin URL
+		 *
+		 * @since 1.0.0
+		 * @var   string The URL of the parent plugin.
+		 */
+		'parent_plugin_url' => esc_url( 'https://github.com/ControlledChaos/sitecore' )
 
 	] );
 }
