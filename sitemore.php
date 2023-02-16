@@ -59,7 +59,7 @@ use SiteMore\Classes\Activate as Activate;
  *    Find `SMP_` and replace with something unique to your plugin name. Use
  *    only uppercase letters.
  *
- *    NOTE: Make sure to include the underscore (_) in your search & replase
+ *    NOTE: Make sure to include the underscore (_) in your search & replace
  *    to ensure you won't disturb instances of the `ABSPATH` constant.
  *
  * 4. General prefix
@@ -101,10 +101,10 @@ include_once SMP_PATH . 'activate/classes/class-activate.php';
 include_once SMP_PATH . 'activate/classes/class-deactivate.php';
 
 /**
- * Register the activaction & deactivation hooks
+ * Register the activation & deactivation hooks
  *
- * The namspace of this file must remain escaped by use of the
- * backslash (`\`) prepending the acivation hooks and corresponding
+ * The namespace of this file must remain escaped by use of the
+ * backslash (`\`) prepending the activation hooks and corresponding
  * functions.
  *
  * @since  1.0.0
@@ -129,7 +129,7 @@ function activate_plugin() {
 activate_plugin();
 
 /**
- * Run daactivation class
+ * Run deactivation class
  *
  * The code that runs during plugin deactivation.
  *
