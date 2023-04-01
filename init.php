@@ -11,7 +11,7 @@
 namespace SiteMore;
 
 // Alias namespaces.
-use SiteMore\Classes as Classes;
+use SiteCore\Classes\Autoload as Autoload;
 
 // Restrict direct access.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,16 +19,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Core plugin function
+ * Initialization function
  *
- * Loads and runs PHP classes.
- * Removes unwanted features.
+ * Loads PHP classes and text domain.
+ * Executes various setup functions.
+ * Instantiates various classes.
+ * Adds settings link in the plugin row.
  *
  * @since  1.0.0
- * @access public
  * @return void
  */
-function sitemore() {
+function init() {
+
+	// Standard plugin installation.
+	load_plugin_textdomain(
+		'sitemore',
+		false,
+		dirname( SCP_BASENAME ) . '/languages'
+	);
+
+	// If this plugin is in the must-use plugins directory.
+	load_muplugin_textdomain(
+		'sitemore',
+		dirname( SCP_BASENAME ) . '/languages'
+	);
 
 	/**
 	 * Class autoloader
@@ -36,7 +50,8 @@ function sitemore() {
 	 * The autoloader registers plugin classes for later use,
 	 * such as running new instances below.
 	 */
-	require_once SMP_PATH . 'includes/autoloader.php';
+	require_once SMP_PATH . 'includes/classes/autoload.php';
+	Autoload\classes();
 
 	// Get compatibility functions.
 	require SMP_PATH . 'includes/compatibility.php';
@@ -56,16 +71,5 @@ function sitemore() {
 	if ( defined( 'SMP_PARENT' ) && ! is_plugin_active( SMP_PARENT ) ) {
 		return;
 	}
-
-	/**
-	 * Base class
-	 *
-	 * This offers methods that may be widely used
-	 * so other classes can extend this to add scripts
-	 * and styles, and other common operations.
-	 */
-	new Classes\Base;
 }
-
-// Run the plugin.
-sitemore();
+add_action( 'plugins_loaded', __NAMESPACE__ . '\init' );

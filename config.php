@@ -25,6 +25,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Constant: Required PHP version
+ *
+ * Used instead of the minimum PHP version
+ * in the plugin header.
+ *
+ * @see activate/classes/class-activate.php
+ *
+ * @since 1.0.0
+ * @var   string The minimum required PHP version.
+ */
+define( 'SMP_MIN_PHP_VERSION', '8.4' );
+
+/**
+ * Function: Minimum PHP version
+ *
+ * Checks the PHP version sunning on the current host
+ * against the minimum version required by this plugin.
+ *
+ * @since  1.0.0
+ * @return boolean Returns false if the minimum is not met.
+ */
+function min_php_version() {
+
+	if ( version_compare( phpversion(), SMP_MIN_PHP_VERSION, '<' ) ) {
+		return false;
+	}
+	return true;
+}
+
+/**
  * Constant: Plugin version
  *
  * Keeping the version at 1.0.0 as this is a starter plugin but
@@ -38,17 +68,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'SMP_VERSION', '1.0.0' );
 
 /**
- * Constant: Required PHP version
- *
- * Used instead of the minimum PHP version
- * in the plugin header.
- *
- * @see activate/classes/class-activate.php
+ * Plugin name
  *
  * @since 1.0.0
- * @var   string The minimum required PHP version.
+ * @var   string The name of the plugin.
  */
-define( 'SMP_PHP_VERSION', '7.4' );
+if ( ! defined( 'SMP_NAME' ) ) {
+	define( 'SMP_NAME', __( 'Site More', 'sitecore' ) );
+}
 
 /**
  * Constant: Text domain
@@ -106,7 +133,7 @@ if ( ! defined( 'SMP_CONFIG' ) ) {
 		 * @since 1.0.0
 		 * @var   string The minimum required PHP version.
 		 */
-		'php_version' => SMP_PHP_VERSION,
+		'php_version' => SMP_MIN_PHP_VERSION,
 
 		/**
 		 * Text domain
@@ -115,16 +142,6 @@ if ( ! defined( 'SMP_CONFIG' ) ) {
 		 * @var   string The text domain of the plugin.
 		 */
 		'domain' => SMP_DOMAIN,
-
-		/**
-		 * Plugin name
-		 *
-		 * Remember to replace in the plugin header.
-		 *
-		 * @since 1.0.0
-		 * @var   string The name of the plugin.
-		 */
-		'name' => __( 'Site More', SMP_DOMAIN ),
 
 		/**
 		 * Developer name
@@ -207,4 +224,44 @@ if ( ! defined( 'SMP_CONFIG' ) ) {
 		'parent_plugin_url' => esc_url( 'https://github.com/ControlledChaos/sitecore' )
 
 	] );
+}
+
+/**
+ * Developer name
+ *
+ * @since 1.0.0
+ * @var   string The name of the developer/agency.
+ */
+if ( ! defined( 'SMP_DEV_NAME' ) ) {
+	define( 'SMP_DEV_NAME', SMP_CONFIG['dev_name'] );
+}
+
+/**
+ * Developer URL
+ *
+ * @since 1.0.0
+ * @var   string The URL of the developer/agency.
+ */
+if ( ! defined( 'SMP_DEV_URL' ) ) {
+	define( 'SMP_DEV_URL', SMP_CONFIG['dev_url'] );
+}
+
+/**
+ * Developer email
+ *
+ * @since 1.0.0
+ * @var   string The URL of the developer/agency.
+ */
+if ( ! defined( 'SMP_DEV_EMAIL' ) ) {
+	define( 'SMP_DEV_EMAIL', SMP_CONFIG['dev_email'] );
+}
+
+/**
+ * Plugin URL
+ *
+ * @since 1.0.0
+ * @var   string The URL of the plugin.
+ */
+if ( ! defined( 'SMP_PLUGIN_URL' ) ) {
+	define( 'SMP_PLUGIN_URL', SMP_CONFIG['plugin_url'] );
 }

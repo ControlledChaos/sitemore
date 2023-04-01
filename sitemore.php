@@ -21,9 +21,6 @@
 
 namespace SiteMore;
 
-// Alias namespaces.
-use SiteMore\Classes\Activate as Activate;
-
 /**
  * License & Warranty
  *
@@ -93,12 +90,8 @@ require plugin_dir_path( __FILE__ ) . 'config.php';
  * for PHP version which otherwise disables the functionality of
  * the plugin.
  */
-
-// Get the plugin activation class.
-include_once SMP_PATH . 'activate/classes/class-activate.php';
-
-// Get the plugin deactivation class.
-include_once SMP_PATH . 'activate/classes/class-deactivate.php';
+include_once SMP_PATH . 'includes/activate/activate.php';
+include_once SMP_PATH . 'includes/activate/deactivate.php';
 
 /**
  * Register the activation & deactivation hooks
@@ -124,7 +117,9 @@ include_once SMP_PATH . 'activate/classes/class-deactivate.php';
  * @return void
  */
 function activate_plugin() {
-	Activate\activation_class();
+
+	// Update options.
+	Activate\options();
 }
 activate_plugin();
 
@@ -138,7 +133,9 @@ activate_plugin();
  * @return void
  */
 function deactivate_plugin() {
-	Activate\deactivation_class();
+
+	// Update options.
+	Deactivate\options();
 }
 deactivate_plugin();
 
@@ -148,10 +145,23 @@ deactivate_plugin();
  * Stop here if the minimum PHP version is not met.
  * Prevents breaking sites running older PHP versions.
  *
+ * A notice is added to the plugin row on the Plugins
+ * screen as a more elegant and more informative way
+ * of disabling the plugin than putting the PHP minimum
+ * in the plugin header, which activates a die() message.
+ * However, the Requires PHP tag is included in the
+ * plugin header with a minimum of version 5.4
+ * because of the namespaces.
+ *
  * @since  1.0.0
  * @return void
  */
-if ( version_compare( phpversion(), SMP_PHP_VERSION, '<' ) ) {
+if ( ! min_php_version() ) {
+
+	// First add a notice to the plugin row.
+	Activate\get_row_notice();
+
+	// Stop here.
 	return;
 }
 
