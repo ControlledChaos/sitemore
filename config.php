@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  * @var   string The minimum required PHP version.
  */
-define( 'SMP_MIN_PHP_VERSION', '8.4' );
+define( 'SMP_MIN_PHP_VERSION', '7.4' );
 
 /**
  * Function: Minimum PHP version
