@@ -80,6 +80,29 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 define( 'SMP_BASENAME', plugin_basename( __FILE__ ) );
 
+/**
+ * Load text domain
+ *
+ * @since  1.0.0
+ * @return void
+ */
+function load_plugin_textdomain() {
+
+	// Standard plugin installation.
+	\load_plugin_textdomain(
+		'sitemore',
+		false,
+		dirname( SMP_BASENAME ) . '/languages'
+	);
+
+	// If this plugin is in the must-use plugins directory.
+	\load_muplugin_textdomain(
+		'sitemore',
+		dirname( SMP_BASENAME ) . '/languages'
+	);
+}
+add_action( 'plugins_loaded', __NAMESPACE__ . '\load_plugin_textdomain' );
+
 // Get plugin configuration file.
 require plugin_dir_path( __FILE__ ) . 'config.php';
 

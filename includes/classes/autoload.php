@@ -58,7 +58,7 @@ function ns( $cat, $class ) {
  * @return string Returns the file path in classes subdirectory.
  */
 function f( $dir, $file ) {
-	return SCP_PATH . 'includes/classes/' . $dir .'/class-' . $file;
+	return SMP_PATH . 'includes/classes/' . $dir .'/class-' . $file;
 };
 
 /**
@@ -110,10 +110,10 @@ function demo() {
 		'SiteCore\Classes\Demo\Demo_Two' => f( 'demo', 'demo-two.php' ),
 
 		// Namespace function, full path.
-		ns( 'Demo', 'Demo_Three' ) => SCP_PATH . 'includes/classes/demo/class-demo-three.php',
+		ns( 'Demo', 'Demo_Three' ) => SMP_PATH . 'includes/classes/demo/class-demo-three.php',
 
 		// Fully custom.
-		'SiteCore\Custom\Namespace\Demo_Four' => SCP_PATH . 'includes/custom/directory/class-demo-four.php'
+		'SiteCore\Custom\Namespace\Demo_Four' => SMP_PATH . 'includes/custom/directory/class-demo-four.php'
 	];
 
 	// Autoload when in use.

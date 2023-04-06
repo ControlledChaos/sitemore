@@ -65,11 +65,6 @@ function parent_dir() {
 	return false;
 }
 
-// Stop here if the plugin functions file can not be accessed.
-if ( ! function_exists( 'is_plugin_active' ) ) {
-	return;
-}
-
 /**
  * Parent plugin ready
  *
@@ -80,6 +75,11 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
  * @return boolean Returns true if the parent plugin is active.
  */
 function parent_ready() {
+
+	// Stop here if the plugin functions file can not be accessed.
+	if ( ! function_exists( 'is_plugin_active' ) ) {
+		return;
+	}
 
 	// Return true if the parent plugin is active.
 	if ( defined( 'SMP_PARENT' ) && is_plugin_active( SMP_PARENT ) ) {
