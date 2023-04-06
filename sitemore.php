@@ -188,5 +188,20 @@ if ( ! min_php_version() ) {
 	return;
 }
 
-// Get the plugin initialization file.
-require_once SMP_PATH . 'init.php';
+/**
+ * Get the plugin initialization file
+ *
+ * Checks for parent plugin dependency.
+ *
+ * This plugin, in its original form, works with the Site Core plugin.
+ * If you have renamed the parent plugin then change the following check
+ * to your new directory name and core plugin file name.
+ *
+ * @link   https://github.com/ControlledChaos/sitecore
+ *
+ * @since  1.0.0
+ * @return void
+ */
+if ( defined( 'SMP_PARENT' ) && is_plugin_active( SMP_PARENT ) ) {
+	require_once SMP_PATH . 'init.php';
+}
